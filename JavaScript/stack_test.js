@@ -34,12 +34,13 @@ function is_legal_brackets(string){
     var stack = new Stack();
     for(var i=0; i<string.length; i++){
         var item = string[i];
+        // 遇到左括号压入栈中
         if (item == '('){
             stack.push(item);
-        }else if(item == ')'){
+        }else if(item == ')'){// 若为右括号判断栈是否为空
             if(stack.isEmpty()){
                 return false;
-            }else{
+            }else{// 若栈不为空,将左括号提取出来,左右括号抵消
                 stack.pop();
             }
         }
