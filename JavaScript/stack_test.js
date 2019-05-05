@@ -47,22 +47,29 @@ function is_legal_brackets(string){
     }
     return stack.isEmpty();
 };
-
+// 计算指定顺序的后缀表达式
 function calc_exp(exp){
     var stack = new Stack();
     for(var i=0; i<exp.length; i++){
         var item = exp[i];
         var symbol = ["+", "-", "*", "/"];
+        
         if(symbol.indexOf(item)>=0){
+            // 遇到运算符连续取出两个数据
             var value_1 = stack.pop();
             var value_2 = stack.pop();
+            // 数据与运算符连接"4+5"
             var exp_str = value_2 + item + value_1;
+            // eval提取字符串内容,使用parseInt解析完成计算
             var res = parseInt(eval(exp_str));
+            // 计算结果压入栈中,待下次计算使用
             stack.push(res.toString());
         }else{
+            // 不是运算符直接压入栈中
             stack.push(item);
         }  
     }
+    // 返回计算结果
     return stack.pop();
 };
 console.log(is_legal_brackets(")(ahfjadf()"));
