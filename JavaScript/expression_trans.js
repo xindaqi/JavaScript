@@ -5,6 +5,7 @@ var priority_map = {
     "*": 2,
     "/": 2
 };
+// infix expression transprot to postfix expression
 function infix_exp_2_postfix_exp(exp){
     var stack = new Stack.Stack();
     var postfix_lst = [];
