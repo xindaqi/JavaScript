@@ -47,5 +47,25 @@ function is_legal_brackets(string){
     }
     return stack.isEmpty();
 };
+
+function calc_exp(exp){
+    var stack = new Stack();
+    for(var i=0; i<exp.length; i++){
+        var item = exp[i];
+        var symbol = ["+", "-", "*", "/"];
+        if(symbol.indexOf(item)>=0){
+            var value_1 = stack.pop();
+            var value_2 = stack.pop();
+            var exp_str = value_2 + item + value_1;
+            var res = parseInt(eval(exp_str));
+            stack.push(res.toString());
+        }else{
+            stack.push(item);
+        }  
+    }
+    return stack.pop();
+};
 console.log(is_legal_brackets(")(ahfjadf()"));
 console.log(is_legal_brackets("()()ahfjadf()"));
+console.log(calc_exp(["4", "13", "5", "/", "+"]));
+exports.Stack = Stack; 
